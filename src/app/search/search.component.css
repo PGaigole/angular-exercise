@@ -1,0 +1,15 @@
+.search-component {
+  padding: 1% 0;
+}
+.search-component .margin0 {
+  margin: 0;
+}
+.search-component .padding0 {
+  padding: 0;
+}
+.search-component .search-box {
+  width: 100%;
+}
+.search-component .search-box[placeholder] {
+  font-style: italic;
+}

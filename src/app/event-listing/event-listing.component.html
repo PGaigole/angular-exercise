@@ -1,0 +1,25 @@
+<div class="event-listing-component col-md-12">
+  <app-search (searchEvent)="recieveEvent($event)"></app-search>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tbody>
+        <tr class="font-weight-bold">
+          <td scope="col" *ngFor="let event of events.events[0] | keyvalue:keepOriginalOrder">{{event.key.split('_').join(' ') | titlecase}}</td>
+          <td></td>
+        </tr>
+      </tbody>
+      <tbody>
+        <ng-container *ngFor="let event of events.events | search:searchedText">
+          <tr *ngIf="event !== -1">
+            <td *ngFor="let item of event | keyvalue:keepOriginalOrder ">{{item.value}}</td>
+            <td class="text-center">
+              <button type="button" class="btn btn-success" *ngIf="event.seats_available !== 0">Book</button>
+              <div class="text-danger font-weight-bold" *ngIf="event.seats_available == 0">Sold Out</div>
+            </td>
+          </tr>
+          <tr class="position-absolute font-italic not-found-text" *ngIf="event == -1">No results found!</tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
