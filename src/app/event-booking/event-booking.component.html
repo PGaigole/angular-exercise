@@ -1,60 +1,70 @@
 <div class="event-booking-component">
   <app-event-header (share_seats)="recieveEvent($event)"></app-event-header>
   <div class="event-booking-form row margin1">
-    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div *ngIf="submit">Tickets booked</div>
+    </div>
     <div class="col-md-4 padding0"><form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
         <div class="form-group row margin0 padding6">
           <label class="col-md-6">User Name</label>
-          <input type="text" formControlName="userName" class="form-control col-md-6" [ngClass]="{ 'is-invalid': submit && f.userName.errors }" pattern="[a-zA-Z ]*"/>
-          <div *ngIf="submit && f.userName.errors" class="invalid-feedback">
-            <div *ngIf="f.userName.errors.required">Please enter your name</div>
-            <div *ngIf="f.userName.errors.pattern">Only letters and spaces are allowed</div>
+          <div class="col-md-6 padding0">
+            <input type="text" formControlName="userName" class="form-control" [ngClass]="{ 'is-invalid': error && f.userName.errors }" pattern="[a-zA-Z ]*"/>
+            <div *ngIf="error && f.userName.errors" class="invalid-feedback">
+              <div *ngIf="f.userName.errors.required">Please enter your name</div>
+              <div *ngIf="f.userName.errors.pattern">Only letters and spaces are allowed</div>
+            </div>
           </div>
         </div>
         <div class="form-group row margin0 padding6">
           <label class="col-md-6">Email</label>
-          <input type="text" formControlName="email" class="form-control col-md-6" [ngClass]="{ 'is-invalid': submit && f.email.errors }" />
-          <div *ngIf="submit && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Please enter your email</div>
-            <div *ngIf="f.email.errors.email">Should be in email format</div>
+          <div class="col-md-6 padding0">
+            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': error && f.email.errors }" />
+            <div *ngIf="error && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Please enter your email</div>
+              <div *ngIf="f.email.errors.email">Should be in email format</div>
+            </div>
           </div>
         </div>
         <div class="form-group row margin0 padding6">
           <label class="col-md-6">Phone Number</label>
-          <input type="text" formControlName="phoneNumber" class="form-control col-md-6" [ngClass]="{ 'is-invalid': submit && f.phoneNumber.errors }" />
-          <div *ngIf="submit && f.phoneNumber.errors" class="invalid-feedback">
-            <div *ngIf="f.phoneNumber.errors.pattern">Please enter 10 digit phone number</div>
+          <div class="col-md-6 padding0">
+            <input type="text" formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': error && f.phoneNumber.errors }" />
+            <div *ngIf="error && f.phoneNumber.errors" class="invalid-feedback">
+              <div *ngIf="f.phoneNumber.errors.pattern">Please enter 10 digit phone number</div>
+            </div>
           </div>
         </div>
         <div class="form-group row margin0 padding6">
           <label class="col-md-6">Number of seats</label>
-          <select type="text" formControlName="seats" class="form-control col-md-6" [ngClass]="{ 'is-invalid': submit && f.seats.errors }" [(ngModel)]="seats_selected" (ngModelChange)="changeAttendees($event)">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-          </select>
-          <div *ngIf="submit && f.seats.errors" class="invalid-feedback">
-            <div *ngIf="f.seats.errors.required">Please enter number of seats</div>
-            <div *ngIf="f.seats.errors.seatsAvailability">Number of seats selected is more than available seats</div>
+          <div class="col-md-6 padding0">
+            <select type="text" formControlName="seats" class="form-control" [ngClass]="{ 'is-invalid': error && f.seats.errors }" [(ngModel)]="seats_selected" (ngModelChange)="changeAttendees($event)">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+            </select>
+            <div *ngIf="error && f.seats.errors" class="invalid-feedback">
+              <div *ngIf="f.seats.errors.required">Please enter number of seats</div>
+              <div *ngIf="f.seats.errors.seatsAvailability">Number of seats selected is more than available seats</div>
+            </div>
           </div>
         </div>
         <div class="form-group row margin0 padding6">
           <label class="col-md-6">Name of other attendees</label>
           <div class="col-md-6 padding0">
             <div class="padding6" *ngFor="let i of numbers_of_attendees">
-              <input type="text" formControlName="other" class="form-control col-md-12 padding0" [ngClass]="{ 'is-invalid': submit && f.other.errors }">
-              <div *ngIf="submit && f.other.errors" class="invalid-feedback">
+              <input type="text" formControlName="other" class="form-control col-md-12 padding0" [ngClass]="{ 'is-invalid': error && f.other.errors }">
+              <div *ngIf="error && f.other.errors" class="invalid-feedback">
                 <div *ngIf="f.other.errors.required">Please enter the name of Attendee {{i}}</div>
               </div>
             </div>
           </div>
         </div>
         <div class="form-group row margin0 padding6">
-          <div class="col-md-6 padding-right0"><button class="btn btn-success w-100">Register</button></div>
-          <div class="col-md-6 padding-right0"><button type="button" class="btn btn-light w-100">Cancel</button></div>
+          <div class="col-md-6 padding-right0"><button class="btn btn-success w-100" [disabled]="submit">Submit</button></div>
+          <div class="col-md-6 padding-right0"><button type="button" class="btn btn-light w-100" (click)="goToEventListing()" [disabled]="submit">Cancel</button></div>
         </div>
     </form></div>
     <div class="col-md-4"></div>

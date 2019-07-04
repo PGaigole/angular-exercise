@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-booking',
@@ -8,14 +9,18 @@ import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn } from
 })
 export class EventBookingComponent implements OnInit {
   bookingForm: FormGroup;
+  error: boolean;
   submit: boolean;
   available_seats: number;
   seats_selected: number;
   numbers_of_attendees: Array<number>;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.error = false;
     this.submit = false;
     this.numbers_of_attendees = [];
   }
@@ -39,10 +44,14 @@ export class EventBookingComponent implements OnInit {
   get f() { return this.bookingForm.controls; }
 
   onSubmit(): void {
-    this.submit = true;
     // stop here if form is invalid
     if (this.bookingForm.invalid) {
+      this.error = true;
+      this.submit = false;
       return;
+    }
+    else {
+      this.submit = true;
     }
   }
 
@@ -51,10 +60,28 @@ export class EventBookingComponent implements OnInit {
     for(let i = 1; i<=this.seats_selected; i++) {
       this.numbers_of_attendees.push(i+1);
     }
+    // this.bookingForm.valueChanges.subscribe( () =>{
+    //     this.changeForm();
+    //  })
+  }
+
+  // changeForm(): void {
+  //   for (let day of this.numbers_of_attendees) {
+  //     console.log(day);
+  //     let control = new FormControl(day, [Validators.required]);
+  //     console.log(day);
+  //     console.log(control);
+  //     this.bookingForm.addControl('', control);
+  //   }
+  //   console.log(this.bookingForm);
+  // }
+
+  goToEventListing(): void {
+    this.router.navigate(['events']);
   }
 }
 
-//custom validation
+//custom validation for seats
 export function seatsValidator(seats: number): ValidatorFn {
   return (control: AbstractControl): { [key: string]: boolean } | null => {
     if (control.value !== undefined && (isNaN(control.value) || control.value > seats)) {
