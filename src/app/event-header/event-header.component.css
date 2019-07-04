@@ -1,0 +1,15 @@
+.event-header-component.margin0 {
+  margin: 0;
+}
+.event-header-component .event-header {
+  height: 10vh;
+  border-bottom: 1px solid #aaa;
+}
+.event-header-component .event-header .event-header-text {
+
+}
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}

@@ -13,7 +13,7 @@
           <tr *ngIf="event !== -1">
             <td *ngFor="let item of event | keyvalue:keepOriginalOrder ">{{item.value}}</td>
             <td class="text-center">
-              <button type="button" class="btn btn-success" *ngIf="event.seats_available !== 0">Book</button>
+              <button type="button" class="btn btn-success" *ngIf="event.seats_available !== 0" (click)="bookEvent(event)">Book</button>
               <div class="text-danger font-weight-bold" *ngIf="event.seats_available == 0">Sold Out</div>
             </td>
           </tr>

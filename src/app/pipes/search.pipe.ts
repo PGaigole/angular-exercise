@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { EventInfo } from '../classes/event-info';
+import { EventInfo } from '../../classes/event-info';
 
 @Pipe({
   name: 'search'

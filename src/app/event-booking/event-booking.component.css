@@ -1,0 +1,19 @@
+.event-booking-component .margin0 {
+  margin: 0;
+}
+.event-booking-component .padding0 {
+  padding: 0;
+}
+.event-booking-component .padding-right0 {
+  padding-right: 0;
+}
+.event-booking-component .padding6 {
+  padding: 0 0 6% 0;
+}
+.event-booking-component .margin1 {
+  margin: 1% 0;
+}
+.event-booking-component .input-feilds input,
+.event-booking-component .input-feilds select {
+  width: 100%;
+}
