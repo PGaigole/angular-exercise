@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # AngularExercise
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
@@ -29,4 +28,3 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 =======
 # angular-exercise
 Test project for Axelerant
->>>>>>> 4fa5b5ebd714c4220a594833904d0ee779d38a22
