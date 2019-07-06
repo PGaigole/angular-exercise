@@ -1,27 +1,27 @@
 {
   "events": [{
     "name": "Macron Workshop",
-    "image": "",
+    "image": "../assets/images/macron.png",
     "date_of_event": "2 July, 2019",
     "seats_available": 30
   }, {
     "name": "Classic cakes with icing",
-    "image": "",
+    "image": "../assets/images/cakes.png",
     "date_of_event": "3 July, 2019",
     "seats_available": 22
   }, {
     "name": "Write out Loud 118",
-    "image": "",
+    "image": "../assets/images/write.png",
     "date_of_event": "1 July, 2019",
     "seats_available": 0
   }, {
     "name": "Craft Drinks India",
-    "image": "",
+    "image": "../assets/images/craft.png",
     "date_of_event": "3 July, 2019",
     "seats_available": 5
   }, {
     "name": "BUILD-CON",
-    "image": "",
+    "image": "../assets/images/build.png",
     "date_of_event": "5 July, 2019",
     "seats_available": 8
   }]

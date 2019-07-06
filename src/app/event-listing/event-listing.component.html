@@ -11,10 +11,15 @@
       <tbody>
         <ng-container *ngFor="let event of events.events | search:searchedText">
           <tr *ngIf="event !== -1">
-            <td *ngFor="let item of event | keyvalue:keepOriginalOrder ">{{item.value}}</td>
-            <td class="text-center">
-              <button type="button" class="btn btn-success" *ngIf="event.seats_available !== 0" (click)="bookEvent(event)">Book</button>
-              <div class="text-danger font-weight-bold" *ngIf="event.seats_available == 0">Sold Out</div>
+            <td class="position-relative" *ngFor="let item of event | keyvalue:keepOriginalOrder ">
+              <span class="vertical-center" *ngIf="item.key !== 'image'">{{item.value}}</span>
+              <span *ngIf="item.key == 'image'"><img class="image-width" src="{{item.value}}"/></span>
+            </td>
+            <td class="position-relative text-center">
+              <div class="vertical-center">
+                <button type="button" class="btn btn-success" *ngIf="event.seats_available !== 0" (click)="bookEvent(event)">Book</button>
+                <div class="text-danger font-weight-bold" *ngIf="event.seats_available == 0">Sold Out</div>
+              </div>
             </td>
           </tr>
           <tr class="position-absolute font-italic not-found-text" *ngIf="event == -1">No results found!</tr>
